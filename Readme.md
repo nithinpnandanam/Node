@@ -1,1 +1,1 @@
-This is a Github repo for studying Node.js
+Just Go through the Introduction in Readme.md
