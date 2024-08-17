@@ -1,1 +1,1 @@
-Just Go through the Introduction in Readme.md
+Just Go through the Introduction in intro.md
