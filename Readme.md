@@ -8,3 +8,4 @@
 * close callbacks: some close callbacks, e.g. socket.on('close', ...).
 ------------------------------------------------------------------------------------------------
 * One cycle of the event loop is called tick
+---
