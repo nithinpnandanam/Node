@@ -50,8 +50,8 @@
 2. ### Ability to Write Without Blocking
  - **Sending Data:** When the server wants to send data back to the client, it needs to write this data to the socket.
  - **Blocking vs. Non-Blocking Writes:**
-  * In a blocking I/O model, the server might get stuck (or "blocked") if it tries to write to a socket when the network buffer is full or not ready to accept more data. This would cause the server to wait until the buffer is ready, potentially stalling other operations.
-  * In a non-blocking I/O model, the server avoids this problem by checking if the socket is ready to accept more data before attempting to write.
+     * In a blocking I/O model, the server might get stuck (or "blocked") if it tries to write to a socket when the network buffer is full or not ready to accept more data. This would cause the server to wait until the buffer is ready, potentially stalling other operations.
+     * In a non-blocking I/O model, the server avoids this problem by checking if the socket is ready to accept more data before attempting to write.
  - **Socket Readiness:** A socket is considered "writable" when the network buffer has enough space to accept more data. In other words, the server can write data to the socket without being blocked.
  - **Epoll Notification:** Epoll monitors the socket for this condition. When the buffer is ready, epoll notifies libuv that the socket is writable.
  - **Callback Execution:** Libuv then triggers the associated callback function to perform the write operation. This ensures that the server only writes when it won’t be blocked, allowing it to efficiently manage multiple connections.
