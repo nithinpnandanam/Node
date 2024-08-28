@@ -57,13 +57,13 @@
  - **Callback Execution:** Libuv then triggers the associated callback function to perform the write operation. This ensures that the server only writes when it won’t be blocked, allowing it to efficiently manage multiple connections.
 ---
 1. ### Data Becoming Available to Read:
- - A client sends a request to the server.
- - Epoll detects that data has arrived at the server's socket.
- - Libuv is notified, and the callback responsible for reading and processing the data is executed.
+       - A client sends a request to the server.
+       - Epoll detects that data has arrived at the server's socket.
+       - Libuv is notified, and the callback responsible for reading and processing the data is executed.
 
 2. ### Ability to Write Without Blocking:
- - The server needs to send a response to the client.
- - Epoll monitors the socket to determine when it’s safe to write without blocking.
- - Once the socket is writable, libuv is notified, and the callback responsible for sending the data is executed.
+       - The server needs to send a response to the client.
+       - Epoll monitors the socket to determine when it’s safe to write without blocking.
+       - Once the socket is writable, libuv is notified, and the callback responsible for sending the data is executed.
 ---
 
