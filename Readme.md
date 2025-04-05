@@ -5,10 +5,10 @@
 * Refer Image 1 : reading a file, setTimeout and api calls are asynchronous operations
 * Refer Image 2 
 * In languages like c and cpp we have to allocate and de allocate memory
-* But in languages like js, memory management and garbage collection is done automatically
+* But in languages like js, ```memory management``` and ```garbage collection ``` is done automatically
 * GEC is created within the call stack and the code there runs line by line
 * When a function invocation is happening another execution context is created
-* Fianlly when al the code gets executed within the function execution context then it is popped out of the call stack
+* Fianlly when all the code gets executed within the function execution context then it is popped out of the call stack
 * The js engine does not have the concept of timer
 * Node js gives some super powers to the js engine
 * Now js engine can make use of timeouts and other functionalities provided by the OS
@@ -17,6 +17,9 @@
 * Node js is asynchronous because of libuv
 * Synchronous code can be managed by v8 engine alone
 * but asynchronous operations can be managed only with the help of libuv
+
+<hr>
+
 * Refer Image 5
 * when multiplyFn is invoked a function execution context is created 
 * when that function is executed it is pushed out of the call stack
@@ -30,3 +33,6 @@
 * Node js is asyncronous
 * js engine is synchronous
 * We normally say JS engine can do asynchronous I/O (aka non blocking I/O)
+
+<hr>
+
