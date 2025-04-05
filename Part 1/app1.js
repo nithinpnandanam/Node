@@ -2,7 +2,7 @@ require("./app2.js")
 // require("./app2") also correct
 // This is how we import a module 
 // all code within app2.js is executed
-// While importing we cannot access all the variables and functions within app2.js
+// If we use require  we cannot access all the variables and functions within app2.js
 // If we want to acces the variables and functions from another module we need to export that implicitly 
 // check app3.js
 let a = 1

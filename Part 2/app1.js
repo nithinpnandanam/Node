@@ -5,3 +5,4 @@ divideNumbers(10,2)
 
 // planet = "Earth" 
 // The above line will throw an error because ES modules are strict
+// we need to specify it as var or let or const

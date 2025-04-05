@@ -7,3 +7,4 @@
 * All the code within a module exists independently of other modules
 * Part 3 - Reading data from json 
 * Part 4 - Organising modules
+* when we use type = module its a differrent way of importing and exporting 

@@ -2,7 +2,7 @@ const name = "Monica Geller"
 let multiplyNumbers = (x,y) => {
     console.log(x*y)
 }
-console.log(module.exports)
+console.log("module.export >> ",module.exports)
 module.exports = {
     name:name,
     multiplyNumbers:multiplyNumbers
