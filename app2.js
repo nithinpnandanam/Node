@@ -15,7 +15,7 @@ setTimeout(() => {
 // Sync function 
 // Below is a synchronous method
 // So main thread will be blocked
-// js engine offloads this task to libuv
+
 fs.readFileSync("./file.txt","utf8")
 console.log("This will execute only after the file is read")
 

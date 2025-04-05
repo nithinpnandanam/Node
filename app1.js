@@ -1,5 +1,12 @@
 const fs = require("fs")
 const https = require("https")
+
+// There are certain  core modules in node js that we make use of like https,fs,crypto
+// const fs = require("node:fs")
+// const https = require("node:https")
+// node: need not be written as such
+// It just indicates we are using a core module
+
 console.log("Hello World")
 let num1 = 12
 let num2 = 5
