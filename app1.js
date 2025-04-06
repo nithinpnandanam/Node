@@ -1,5 +1,4 @@
-// js engine asks libuc to carry out setImmediate since its an asynchronous operation
-// similarly for readFile and setTimeout
+// js engine asks libuv to carry out all the asynchronous operation [setImmediate,readFile and setTimeout].
 // when the call stack is empty the event loop checks for any callback functions in the callback queue
 // here we need to consider only 3 callback queue
 // callback queue for setImmediate,setTimeout and readFile
@@ -18,10 +17,11 @@
 // Event loop puts B in the call stack for execution and once the callback function is executed its pushed out of the call stack
 // "setImmediate" will be printed
 // Now moving to the close phase
-// since its happeining in a loop we again come to the timer phase
+// since its happening in a loop we again come to the timer phase
 // then reaches the poll phase
 // when poll phase is reached the file is read and callback C will be there in the callback que of readFile
 // event loop executes C by putting it in the call stack and later popping it out once complete
+
 const fs = require("fs")
 const a = 100
 setImmediate(()=>console.log("setImmediate"))

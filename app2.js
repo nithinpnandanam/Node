@@ -19,7 +19,7 @@ console.log("Last Line is printed")
 
 // all the synchronous lines of code are executed bt the js engine 
 // Thus "a =  100" and "Last Line is printed" appears first
-// Lubuv handles all the asynchronous tasks
+// Libuv handles all the asynchronous tasks
 // They handle all the asynchronous tasks with the help of event loop and callback queues
 // When the call stack is empty event loops check the callback queues 
 // callback associated with procees.nextTick() is placed in a seperate callback que
@@ -39,4 +39,4 @@ console.log("Last Line is printed")
 // callback associated with setImmediate is executed
 // After that procees.nextTick() and promise callbacks are checked
 // since there are no such call backs present we are moving to the close phase
-// This procees continues and again poll phase is reached thus callback with respect to file reading i sexecuted at last
+// This procees continues and again poll phase is reached thus callback with respect to file reading is executed at last
