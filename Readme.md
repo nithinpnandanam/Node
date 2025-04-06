@@ -42,8 +42,8 @@
 * This design is key to Node.js's ability to handle a large number of simultaneous connections efficiently without requiring a separate thread for each connection, making it ideal for building scalable network applications.
 ---
 1. ### Data Becoming Available to Read
- - ```**Receiving Data:** ``` When a client sends data to the server, this data arrives at the server's network interface and is stored in a buffer associated with the socket connection.
- - ```**Socket Readiness:**``` The socket descriptor (fd) representing this connection becomes "readable" when there is data available in the buffer that the server can read.
+ - **```Receiving Data: ```** When a client sends data to the server, this data arrives at the server's network interface and is stored in a buffer associated with the socket connection.
+ - ```Socket Readiness:``` The socket descriptor (fd) representing this connection becomes "readable" when there is data available in the buffer that the server can read.
  - ```**Non-Blocking I/O:**``` In a non-blocking I/O model (used by Node.js), the server doesn't continuously check the socket to see if data has arrived. Instead, it relies on mechanisms like epoll.
  - ```**Epoll Notification:**``` Epoll monitors this socket descriptor. When data arrives and the socket is ready to be read (i.e., there’s data in the buffer), epoll will notify the application (libuv in Node.js) that this socket is ready for a read operation.
  - ```**Callback Execution:**``` Libuv then triggers the corresponding callback function to handle the incoming data (e.g., reading the data and processing it).
