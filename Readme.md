@@ -12,6 +12,7 @@
 * 4 threads are available by default
 * for the fifth file reading operation to take place one of the default threads must be available after its operation[Thus a small delay is present]
 * fs,crypto and dns.lookup [Refer Image 3] uses threadpool as these are heavy operations that can even block a thread
+* http fetch : These are handled by OS-level non-blocking I/O (like epoll, kqueue, or IOCP), not threads.
 ## is Node js single or multi threaded ?
 * if its a synchronous task then Node js is single threaded
 * but if asynchronous tasks like reading file,password encryption using crypto method,Node js acts as multi thread
