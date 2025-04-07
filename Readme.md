@@ -1,3 +1,5 @@
+# Server
+
 * Client and server are basically two computers 
 * Deploying an application to the server means running the application in that server 
 * ec2 instance in AWS means a server
