@@ -1,3 +1,7 @@
-# Documentation
+# Creating a database
 
-* **[1.Intro](https://github.com/nithinpnandanam/Node/tree/1.Intro)**
+* GUI for  mongodb : ```compass```
+* when I created a document using GUI in compass without a unique id , automatically a unique id was added
+
+pass : e1FW3rv3Gov3IKLr
+    
