@@ -19,3 +19,12 @@
 * PATCH
 * DELETE
 
+### Difference between PUT and PATCH
+
+* PUT
+    * Replaces the entire resource	
+    * Request body should contain the full updated object
+* PATCH
+    * Updates part of the resource
+    * Request body needs only the fields you want to update
+
