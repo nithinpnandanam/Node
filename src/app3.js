@@ -1,31 +1,30 @@
-const express = require('express');
+const express = require("express");
 
 const app = express();
 
-// order of execution is important
-// app.use("/user", (req, res) => {
-//     res.send("from app.use");
-// });
+// ===================================================
 
-app.get("/user", (req, res) => {
-  res.send({
-    "firstName":"Chandler",
-    "secondName":"Bing"
-  });
+
+
+app.get("/admin/getAllData", (req, res, next) => {
+  try {
+    throw new Error("kjbsjk");
+    res.send("Obtained All Data");
+  } catch (err) {
+    res.status(500).send("Unable to obtain data");
+  }
 });
 
-app.post("/user", (req, res) => {
-  res.send("Posted data in database");
+// if try catch is not there belo code with handle the error
+app.use("/", (err, req, res, next) => {
+  if (err) {
+    console.log("Error", err);
+    res.status(500).send("Something went wrong");
+  }
 });
 
-app.get("/test", (req, res) => {
-  res.send("from route /test");
-});
-
-app.use("/user", (req, res) => {
-    res.send("from app.use");
-});
+// ===================================================
 
 app.listen(7777, () => {
-    console.log("Server is listening on port 7777");
+  console.log("Server is listening on port 7777");
 });
