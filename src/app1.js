@@ -4,16 +4,14 @@ const app = express();
 const { connectDB } = require("./config/database");
 const User = require("./models/user");
 
+app.use(express.json()) 
+// if we use this middleware the json format coming from the payload will be converted into js object
+// then req.body will show the payload else it will be undefined
+
 app.post('/signup',async(req,res)=>{
   // creating a new instance of User model
-  const user = new User({
-    firstName: "Ross 2",
-    lastName: "Geller",
-    emailId: "ross@gmail.com",
-    password: "ross@123",
-    age: 30,
-    gender: "Male",
-  })
+  console.log(req.body)
+  const user = new User(req.body)
   try{
     await user.save()
     res.send("User Added successfully")
