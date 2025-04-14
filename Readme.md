@@ -18,3 +18,9 @@
     * ```app.use("/", middleware)```
     * This registers the middleware for all paths that start with / : which basically means every request.
 ---
+* all db operations must be made using ```await```
+* also try cathc must be used
+---
+* ```const URI = "mongodb+srv://<username><password>@cluster0.nwoltxh.mongodb.net/<db-name>?retryWrites=true&w=majority&appName=Cluster0"```
+* this is the format of the ```connection string```
+---```
