@@ -1,26 +1,11 @@
-# Deep Dive into Apis
+# Data Sanitization and Schema Validation
 
----
-* Difference between JSON and Javascript Object
-    * In json the keys are always a string ```double-quoted```
-    * JS object not neccesarily like that 
----
-* Refer Image1
-* if we want to send payload >> ```go to Body``` >> ```select raw``` >> ```Select JSON format```
----
-* we are getting the payload in a JSON Format
-* So we use a middleware to convert it into a js object
-* ```app.use(express.json())```
-* this middleware is present in express by default
-* ```app.use(middleware)``` 
-    * This is exactly the same behavior internally as app.use("/")
-    * If no path is given, Express defaults to /.
-    * ```app.use("/", middleware)```
-    * This registers the middleware for all paths that start with / : which basically means every request.
----
-* all db operations must be made using ```await```
-* also try cathc must be used
----
-* ```const URI = "mongodb+srv://<username><password>@cluster0.nwoltxh.mongodb.net/<db-name>?retryWrites=true&w=majority&appName=Cluster0"```
-* this is the format of the ```connection string```
----```
+* There are ```scheme level validation``` (realated to db) and ```api level validation```
+* Some validations must be made before data is send to the db
+* Api level validation is also needed
+* When we try to update a field we must make sure that fields like email are not updated
+* The ```every() method``` of Array instances tests whether all elements in the array pass the test implemented by the provided function. 
+* It returns a Boolean value.
+* ```validator``` is a npm library for validations
+* using validator I am using schema level validations
+
