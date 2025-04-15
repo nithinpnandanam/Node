@@ -3,10 +3,10 @@
 ### Authentication Workflow
     * when the user logs in using email and password a jwt token is created and stored in a cookie
     * This cookie is send back to the client
-    ```
-    # This is how I send the cookie
-    res.cookie('token','uadhasdiljjkjlaBHKJLAOLbjdaiosdtvwSLK')
-    ```
+```
+# This is how I send the cookie
+res.cookie('token','uadhasdiljjkjlaBHKJLAOLbjdaiosdtvwSLK')
+```
     * The cookie is stored by the client
     * The client on every request will bring the cookie along with it
     * The server performs validations 
