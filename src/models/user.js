@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const validator = require('validator');
-
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const userSchema = new Schema({
   firstName: {
     type:String,
@@ -66,15 +67,30 @@ const userSchema = new Schema({
   timestamps:true
 });
 
+// offloading some functions to schema methods
+userSchema.methods.getJWT = async function(){
+  // we areusing 'this'
+  // so arrow functions cannot be used
+  const user = this
+  const token = await jwt.sign({id:user._id},"dev-tinder-secret-key-6718356", { expiresIn: '7d' })
+  return token
+  
+}
+userSchema.methods.validatePassword = async function(passwordByUser){
+  const user = this
+  const isPasswordValid = await bcrypt.compare(passwordByUser, user.password) 
+  return isPasswordValid
+
+}
 module.exports = mongoose.model("User", userSchema);
 
-//firstName: String,  String is shorthand for {type: String}
+// firstName: String,  String is shorthand for {type: String}
 
 // name of the model is the first param
 // second param is the schema
 // Here we are creating a collection (table)
 
-//Creates a model called User
+// Creates a model called User
 // Internally, Mongoose pluralizes and lowercases the model name to get the collection name:
 // in compass we will find the name of the collection to be users
 
