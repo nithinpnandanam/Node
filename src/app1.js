@@ -3,17 +3,30 @@ const express = require("express");
 const app = express();
 const { connectDB } = require("./config/database");
 const User = require("./models/user");
+const {validateSignUpData,validateEditProfileData} = require('./utils/validations')
+const bcrypt = require('bcrypt');
 
 app.use(express.json());
 // if we use this middleware the json format coming from the payload will be converted into js object
 // then req.body will show the payload else it will be undefined
 // =================================================================
 app.post("/signup", async (req, res) => {
-  // creating a new instance of User model
-  console.log(req.body);
-  // Create a new row (document) in the users collection using the values passed by the client
-  const user = new User(req.body);
   try {
+    validateSignUpData(req)
+    const { firstName, lastName, emailId, password } = req.body;
+
+    // Encrypting the password
+    const passwordHash = await bcrypt.hash(password,10) // second param is saltRounds
+    console.log("passwordHash",passwordHash)
+
+    // creating a new instance of new User model
+    const user = new User({
+      firstName,
+      lastName,
+      emailId,
+      password:passwordHash
+
+    });
     await user.save(); // This is how we save to a databse
     res.send("User Added successfully");
   } catch (err) {
@@ -65,15 +78,12 @@ app.delete("/delete", async (req, res) => {
 app.patch("/update/:id", async (req, res) => {
   try {
     const data = req.body;
-    // fields like email cannot be updated
-    const allowedUpdates = ['photUrl','gender','about','skills']
-    const isUpdateAllowed = Object.keys(data).every((element)=>{
-      return allowedUpdates.includes(element)
-    })
-    if(!isUpdateAllowed){
+    
+    
+    if(!validateEditProfileData){
       throw new Error('Update not allowed for this field')
     }
-    // skills cannot have more than 5 items
+    // skills cannot have more than 5 items 
     if (req.body.skills?.length>=5) {
       throw new Error("Over Achiever")
     }
