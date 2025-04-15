@@ -35,6 +35,29 @@ app.post("/signup", async (req, res) => {
   }
 });
 // =================================================================
+// User Login
+app.post('/login',async (req,res)=>{
+  try{
+    const {emailId,password} = req.body
+    const user = await User.findOne({emailId:emailId})
+    console.log("user",user)
+    // findOne will rteurn null if there is no match
+    // findOne will rteurn the document based on the filter given
+    if(!user){
+      throw new Error("Invalid Credentials email")
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password) // (first param is password,second param is the hash that we store in db)
+    if(isPasswordValid){
+      res.send("Login Successfull")
+    }else{
+      throw new Error("Invalid credentials pass")
+    }
+  }catch(err){
+    console.log(err);
+    res.status(400).send("Log in Error");
+  }
+})
+// =================================================================
 
 // Find all users
 app.get("/feed", async (req, res) => {
