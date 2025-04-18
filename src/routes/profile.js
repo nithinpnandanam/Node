@@ -46,6 +46,7 @@ router.patch('/profile/edit',userAuth,async (req,res)=>{
             loggedInUser[element]=payload[element] 
         })
         await loggedInUser.save()
+        // if we use res.json it must be object or array that needs to be sent to the user
         res.json({
             message:`${loggedInUser.firstName}'s profile has been updated`,
             data:loggedInUser
