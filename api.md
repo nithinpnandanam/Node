@@ -13,7 +13,7 @@
         * for editing profile details
         * for changing password we need different login 
         * so creating a seperate api
-    * Patch /profile/password
+    * Patch /profile/change-password : For changing password
 
 ### connectionRequestRouter
     * POST /request/send/interested/:userId

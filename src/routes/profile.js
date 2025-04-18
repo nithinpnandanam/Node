@@ -4,6 +4,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const { userAuth } = require("../middlewares/auth");
 const { validateEditProfileData } = require("../utils/validations");
+const bcrypt = require('bcrypt')
 // Profile section
 router.get("/profile/view", userAuth, async (req, res) => {
   // the below login needs to be written for all apis that require authentication
@@ -56,5 +57,23 @@ router.patch('/profile/edit',userAuth,async (req,res)=>{
         console.log("err",err)
         res.status(400).send("Invalid Edit Request : "+err.message)
     }
+})
+
+// for password change
+router.post('/profile/change-password',userAuth,async (req,res)=>{
+  try{
+    const {currentPassword,newPassword} = req.body
+    if (req.user.validatePassword(currentPassword)){
+      const passwordHash = await bcrypt.hash(newPassword,10) // this is a asynchronous operation when we refer the documentation.So await is given
+      req.user.password = passwordHash
+      await req.user.save()
+      res.send("Password changed successfully")
+  
+    }
+  }catch(err){
+    res.status(400).send("Password not changed "+err.message)
+  }
+  
+
 })
 module.exports = router;

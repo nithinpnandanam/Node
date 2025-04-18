@@ -78,7 +78,7 @@ userSchema.methods.getJWT = async function(){
 }
 userSchema.methods.validatePassword = async function(passwordByUser){
   const user = this
-  const isPasswordValid = await bcrypt.compare(passwordByUser, user.password) 
+  const isPasswordValid = await bcrypt.compare(passwordByUser, user.password) // bcrypt.compare is an asynchronous operation so await is used.Evident in the documentation
   return isPasswordValid
 
 }

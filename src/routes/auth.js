@@ -5,9 +5,10 @@ const router = express.Router()
 const {validateSignUpData,validateEditProfileData} = require('../utils/validations')
 const bcrypt = require('bcrypt');
 const User = require("../models/user");
+const { userAuth } = require('../middlewares/auth');
 
-// =================================================================
-// instead of application.post we can use router.post
+
+// instead of app.post we can use router.post
 router.post("/signup", async (req, res) => {
   try {
     validateSignUpData(req)
@@ -32,7 +33,7 @@ router.post("/signup", async (req, res) => {
     res.status(400).send("Error saving the user");
   }
 });
-// =================================================================
+
 // User Login
 router.post('/login',async (req,res)=>{
   try{
@@ -68,7 +69,7 @@ router.post('/login',async (req,res)=>{
     res.status(400).send("Log in Error");
   }
 })
-// =================================================================
+
 router.post('/logout',async (req,res)=>{
     res.cookie('token',null,{
         expires:new Date(Date.now())
@@ -82,7 +83,7 @@ router.post('/logout',async (req,res)=>{
     // })
     // .send("Logout Successfull")
 })
-// =================================================================
+
 
 
 module.exports = router
