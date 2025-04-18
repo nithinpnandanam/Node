@@ -37,16 +37,23 @@ router.get("/profile/view", userAuth, async (req, res) => {
   }
 });
 
-router.patch('/profile/edit',userAuth,(req,res)=>{
+router.patch('/profile/edit',userAuth,async (req,res)=>{
     try{
-        if(!validateEditProfileData(req)){
-            throw new Error('Invalid edit request')
-            // if error is thrown then it will go to the catch statement
-        }
-        const user = req.user // info about logged in user from the middleware
+        validateEditProfileData(req)
+        const loggedInUser = req.user // info about logged in user from the middleware
+        const payload = req.body // data that need to be changed 
+        Object.keys(payload).forEach((element)=>{
+            loggedInUser[element]=payload[element] 
+        })
+        await loggedInUser.save()
+        res.json({
+            message:`${loggedInUser.firstName}'s profile has been updated`,
+            data:loggedInUser
+        })
          
     }catch(err){
-        res.status(400).send("Error : "+err.message)
+        console.log("err",err)
+        res.status(400).send("Invalid Edit Request : "+err.message)
     }
 })
 module.exports = router;
