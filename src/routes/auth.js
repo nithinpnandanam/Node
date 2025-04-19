@@ -30,7 +30,7 @@ router.post("/signup", async (req, res) => {
     res.send("User Added successfully");
   } catch (err) {
     console.log(err);
-    res.status(400).send("Error saving the user");
+    res.status(400).send("Error saving the user : "+err.message);
   }
 });
 

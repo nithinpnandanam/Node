@@ -21,44 +21,52 @@ const validateSignUpData = (req) => {
     throw new Error("Email is not valid!");
   }
 
-  const validGenders = ["male", "female", "others"];
-  if (!validGenders.includes(gender)) {
-    throw new Error("Gender must be either 'male', 'female', or 'others'");
+  if (gender !== undefined) {
+    const validGenders = ["male", "female", "others"];
+    if (!validGenders.includes(gender)) {
+      throw new Error("Gender must be either 'male', 'female', or 'others'");
+    }
   }
-
+  
   if (!validator.isStrongPassword(password)) {
     throw new Error("Please enter a strong password!");
   }
 
-  if (!Array.isArray(skills)) {
-    Array.isArray(skills);
-    throw new Error("Skills must be an array of strings!");
+  if (skills!== undefined){
+    if (!Array.isArray(skills)) {
+      Array.isArray(skills);
+      throw new Error("Skills must be an array of strings!");
+    }
+  
+    if (skills.length > 5) {
+      throw new Error("Skills array should not contain more than 5 items!");
+    }
+  
+    const allSkillsAreStrings = skills.every(
+      (skill) => typeof skill === "string"
+    );
+    if (!allSkillsAreStrings) {
+      throw new Error("Each skill must be a string!");
+    }
   }
+  
 
-  if (skills.length > 5) {
-    throw new Error("Skills array should not contain more than 5 items!");
-  }
-
-  const allSkillsAreStrings = skills.every(
-    (skill) => typeof skill === "string"
-  );
-  if (!allSkillsAreStrings) {
-    throw new Error("Each skill must be a string!");
-  }
-
-  if (!validator.isURL(photUrl)) {
+  // photUrl if not there in the payload while signing up then its value will be undefined
+  // then validator.isURL(photUrl) will break since photoUrl is expecting a string but got undefined
+  // so we are validation only if photoUrl is not undefined.
+  if (photUrl !== undefined && !validator.isURL(photUrl)) {
     throw new Error("Photo URL must be a valid URL!");
   }
-
+  // if we have not given age isNaN(age) = isNan(undefined) = true
   if (typeof age !== "number" || isNaN(age)) {
     // if age is NaN then typeof NaN is a number
     // so another validation is given in he OR statement isNaN
     // isNaN(NaN) is true
     throw new Error("Age must be a valid number!");
   }
-
-  if (typeof about !== "string" || about.length > 30) {
-    throw new Error("About must be a string with within 30 characters!");
+    // lastName,skills
+  if (about !== undefined && (typeof about !== "string" || about.length > 30)) {
+    throw new Error("About must be a string within 30 characters!");
   }
 };
 
