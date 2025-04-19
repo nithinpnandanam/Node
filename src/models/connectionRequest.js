@@ -34,5 +34,7 @@ connectionRequestSchema.pre('save',function(next){
     }
     next()
 })
+
+connectionRequestSchema.index({fromUserId:1,toUserID:1})
 module.exports = mongoose.model("ConnectionRequest", connectionRequestSchema);
 // in the db when a collection is formed this model name will be changed to plural and all letters will be chahges to lowercase
