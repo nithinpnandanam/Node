@@ -79,28 +79,44 @@ router.get("/user/connections", userAuth, async (req, res) => {
 
 router.get("/feed", userAuth, async (req, res) => {
   try {
+    console.log("Inside")
     const loggedInUser = req.user;
+
+    const pageNumber = +req.query.page 
+    let limitNumber = +req.query.limit 
+
+    if (pageNumber < 1) {
+      throw new Error("Invalid page number");
+    }
+    if (limitNumber < 1) {
+      throw new Error("Invalid limit number");
+    }
+
+    limitNumber = limitNumber>30?30:limitNumber
+    // we dont want limitNumber to be a very large value 
+    const page = pageNumber || 1;
+    const limit = limitNumber|| 10;
     // first of all we need to find every request we send and all request we received
     const totalRequests = await ConnectionRequest.find({
       $or: [{ toUserId: loggedInUser._id }, { fromUserId: loggedInUser._id }],
     }).select("fromUserId toUserId status");
     // then we need to filter all those we dont want to see
-    const hiddenFromFeedUsers = new Set(); // this is how we initialise a set 
+    const hiddenFromFeedUsers = new Set(); // this is how we initialise a set
     // in a set there wil not be any duplicate elements
     totalRequests.forEach((req) => {
-        hiddenFromFeedUsers.add(req.fromUserId.toString()); // using add method we add elements to a set 
-        hiddenFromFeedUsers.add(req.toUserId.toString());
+      hiddenFromFeedUsers.add(req.fromUserId.toString()); // using add method we add elements to a set
+      hiddenFromFeedUsers.add(req.toUserId.toString());
     });
 
-    console.log("loggedInUser",loggedInUser._id)
-    console.log("hiddenFromFeedUsers",hiddenFromFeedUsers)
-    
+    console.log("loggedInUser", loggedInUser._id);
+    console.log("hiddenFromFeedUsers", hiddenFromFeedUsers);
+
     const usersInFeed = await User.find({
       $and: [
         { _id: { $nin: Array.from(hiddenFromFeedUsers) } },
         { _id: { $ne: loggedInUser._id } }, // this is not actually needed since we will get this id from hiddenFromFeedUsers
       ],
-    }).select("firstName skills gender");
+    }).select("firstName skills gender").skip((page-1)*limit).limit(limit);
     // _id is from the User Model
     res.json({
       message: "Uers in Feed",
