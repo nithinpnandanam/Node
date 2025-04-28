@@ -5,20 +5,27 @@ const connectionRequestSchema = new Schema(
   {
     fromUserId: {
       type: mongoose.ObjectId,
-      required:true
+      required:true,
+      ref:"User" 
+      // reference to the user collection
+      // collections means a table
+      // connection between two collection is made
+      // "User" is the name of the model
     },
-    toUserID: {
+    toUserId: {
       type: mongoose.ObjectId,
-      required:true
+      required:true,
+      ref:"User" 
     },
     status: {
       type: String,
       enum: {
-        values: ["ignored", "interested", "accepted", "rejected"],
+        values: ["ignore", "interest", "accept", "reject"],
         message: "{VALUE} is not supported",
         //  Mongoose replaces {VALUE} with the value being validated.
       },
-      required:true
+      required:true,
+      ref:"User" 
     },
   },
   {
@@ -29,12 +36,12 @@ const connectionRequestSchema = new Schema(
 // before we are saving to the database this function will be called
 connectionRequestSchema.pre('save',function(next){
     const connectionRequest = this
-    if(connectionRequest.fromUserId.equals(connectionRequest.toUserID)){
+    if(connectionRequest.fromUserId.equals(connectionRequest.toUserId)){
         throw new Error("Cannot send request to yourselves")
     }
     next()
 })
 
-connectionRequestSchema.index({fromUserId:1,toUserID:1})
+connectionRequestSchema.index({fromUserId:1,toUserId:1})
 module.exports = mongoose.model("ConnectionRequest", connectionRequestSchema);
-// in the db when a collection is formed this model name will be changed to plural and all letters will be chahges to lowercase
+// in the db when a collection is formed this model name will be changed to plural and all letters will be changed to lowercase

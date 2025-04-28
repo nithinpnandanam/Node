@@ -16,14 +16,16 @@
     * Patch /profile/change-password : For changing password
 
 ### connectionRequestRouter
-    * POST /request/send/interested/:userId
-    * POST /request/send/ignored/:userId
-    * POST /request/review/accepted/:userId
-    * GET /request/review/rejected/:userId
+    * POST /request/send/status/:userId
+        * POST /request/send/interest/:userId
+        * POST /request/send/ignore/:userId
+    * POST /request/review/status/:requestId
+        * POST /request/review/accept/:requestId
+        * GET /request/review/reject/:requestId
 
 ### userRouter
+    * GET /user/request/received
     * GET /user/connection
-    * GET /user/requests
     * GET /user/feed
 
 ---
