@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { connectDB } = require("./config/database");
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 
 const authRouter = require('./routes/auth')
@@ -11,6 +12,12 @@ const userRouter = require('./routes/user')
 
 app.use(express.json());
 app.use(cookieParser()) 
+app.use(cors({
+  origin:"http://localhost:4000", // whitelisting this domain
+  credentials:true,// for setting the cookies this is needed
+  // also we need to specify this in FE
+  // we need to set token on the cookies
+}))
 
 app.use('/',authRouter)
 app.use('/',profileRouter)

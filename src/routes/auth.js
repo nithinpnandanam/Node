@@ -60,9 +60,12 @@ router.post('/login',async (req,res)=>{
       // when we decode the token later it is this id that we get as the decoded message >> {id:user._id}
 
       res.cookie('token',token) 
-      res.send("Login Successfull")
+      res.json({
+        message:"Login Successfull",
+        data:user
+      })
     }else{
-      throw new Error("Invalid credentials pass")
+      throw new Error("Invalid credentials password")
     }
   }catch(err){
     console.log(err);

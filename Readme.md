@@ -35,3 +35,21 @@ console.log(arr); // [1, 2, 3, 4]
     * entries from 11-20 must be shown
     * limit = 10
     * skip = (page-1)*limit
+---
+* install a library called cors
+```
+const cors = require('cors')
+
+app.use(cors({
+  origin:"http://localhost:4000", // whitelisting this domain
+  credentials:true, 
+}))
+```
+* **app.use(cors({...}))** → allows your backend to handle requests from another origin.
+
+* This is important because the backend (localhost:7777 or whatever port) and frontend (localhost:4000) are on different origins, and browsers block such requests by default (called CORS: Cross-Origin Resource Sharing).
+
+* credentials: true → allows cookies, authorization headers, or TLS client certificates to be sent with the request.
+
+* so in the FE and BE we need to make sure to set the credentials to true
+---
