@@ -1,3 +1,29 @@
-# Documentation
+# Reference to all Branches
 
-* **[1.Intro](https://github.com/nithinpnandanam/Node/tree/1.Intro)**
+1. [Intro](https://github.com/nithinpnandanam/Node/tree/1.Intro)
+2. [Js On Server](https://github.com/nithinpnandanam/Node/tree/2.Js_On_Server?tab=readme-ov-file)
+3. [globalThis](https://github.com/nithinpnandanam/Node/tree/3.Lets_write_code)
+4. [Module.exports](https://github.com/nithinpnandanam/Node/tree/4.module.export%26require)
+5. [IIFE](https://github.com/nithinpnandanam/Node/tree/5.IIFE)
+6. [Libuv](https://github.com/nithinpnandanam/Node/tree/6.libuv)
+7. [Sync-Async-setTimeout](https://github.com/nithinpnandanam/Node/tree/7.sync_async_setTimeout)
+8. [V8-Engine](https://github.com/nithinpnandanam/Node/tree/8.V8_engine)
+9. [Event-Loop](https://github.com/nithinpnandanam/Node/tree/9.event_loop%26libuv)
+10. [Thread-Pool](https://github.com/nithinpnandanam/Node/tree/10.thread_pool)
+11. [Creating-Server](https://github.com/nithinpnandanam/Node/tree/11.create_server)
+12. [Databases](https://github.com/nithinpnandanam/Node/tree/12.databases)
+13. [Mongodb](https://github.com/nithinpnandanam/Node/tree/13.mongodb)
+14. [Micro-Mono-Services](https://github.com/nithinpnandanam/Node/tree/S2-01-microservices-mololith)
+15. [HLD-LLD](https://github.com/nithinpnandanam/Node/tree/S2-02-HLD-LLD)
+16. [Express-Server](https://github.com/nithinpnandanam/Node/tree/S2-03-express-server)
+17. [Routing-Request-Handlers](https://github.com/nithinpnandanam/Node/tree/S2-04-routing-request-handlers)
+18. [Middlewates](https://github.com/nithinpnandanam/Node/tree/S2-05-middlewares-error-handlers)
+19. [Mongoose](https://github.com/nithinpnandanam/Node/tree/S2-06-mongoose)
+20. [API](https://github.com/nithinpnandanam/Node/tree/S2-07-api-deep-dive)
+21. [Data-Sanitization-Schems-Validation](https://github.com/nithinpnandanam/Node/tree/S2-08-data-sanitization-schema-validation)
+22. [Encrypt-Password](https://github.com/nithinpnandanam/Node/tree/S2-09-encrypt-passwords)
+23. [JWT-Cookie-authentication](https://github.com/nithinpnandanam/Node/tree/S2-10-JWT-cookies-authentication)
+24. [Express-Router](https://github.com/nithinpnandanam/Node/tree/S2-11-express-router)
+25. [Compound-Index](https://github.com/nithinpnandanam/Node/tree/S2-12-compound-index)
+26. [Ref-Populate](https://github.com/nithinpnandanam/Node/tree/S2-13-ref-populate)
+ 
