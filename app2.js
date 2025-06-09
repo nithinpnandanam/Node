@@ -17,7 +17,7 @@ const printA = () => {
 printA()
 console.log("Last Line is printed")
 
-// all the synchronous lines of code are executed bt the js engine 
+// all the synchronous lines of code are executed by the js engine 
 // Thus "a =  100" and "Last Line is printed" appears first
 // Libuv handles all the asynchronous tasks
 // They handle all the asynchronous tasks with the help of event loop and callback queues
@@ -30,9 +30,9 @@ console.log("Last Line is printed")
 // before timer phase D and B gets executed
 // These callbacks are having more priority
 // If there are several callbacks called D1,D2,D3 then these gets executed first and after that B gets executed
-// when its the timer phase A gets executed
+// when its the timer phase callback associated with setTimeout is executed 
 // After that procees.nextTick() and promise callbacks are checked
-// since there are no such call backs present we are moving to poll phase
+// since there are no such callbacks present we are moving to poll phase
 // callback with respect to file reading should be executed in this phase but file reading operation takes time hence does not happen now
 // After that procees.nextTick() and promise callbacks are checked
 // since there are no such call backs present we are moving to the check phase

@@ -2,7 +2,7 @@
 // when the call stack is empty the event loop checks for any callback functions in the callback queue
 // here we need to consider only 3 callback queue
 // callback queue for setImmediate,setTimeout and readFile
-// These callback queue contains calback functions once the asynchronous operations are completed.
+// These callback queue contains callback functions once the asynchronous operations are completed.
 // Lets say reading the file is taking a much larger time because of the contents in the file
 // after "a = 100" and "Last Line is printed" call stack will be empty
 // in timer phase we can see there is a callback associated called A 
